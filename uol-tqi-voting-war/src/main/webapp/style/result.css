@@ -1,0 +1,50 @@
+@CHARSET "UTF-8";
+
+.main .result {
+	border: 1px solid black;
+	width: 600px;
+	float: left;
+	height: 180px;
+}
+
+.main .result .wizard {
+	font-size: 15px;
+	background: white;
+	position: relative;
+	top: -22px;
+	left: 10px;
+	width: 280px;
+	font-family: arial;
+}
+
+.main .result .option .options {
+	position: relative;
+	left: 15px;
+	top: 20px;
+	font-family: arial;
+}
+
+.main .result .option .options .label {
+	font-size: 26px;
+	margin-right: 10px;
+}
+
+.main .result .option .options .vote {
+	font-size: 26px;
+	margin-right: 20px;
+	color: gray;
+}
+
+.main .result .option .options .vote:AFTER {
+	content: "%"
+}
+
+.view-poll {
+	position: relative;
+	font-family: arial;
+	font-weight: bold;
+	font-size: 12px;
+	color: #A00000;
+	left: -50px;
+	top: 209px;
+}

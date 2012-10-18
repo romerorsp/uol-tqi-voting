@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta charset="UTF-8"></meta>
+	<link rel="stylesheet" type="text/css" href="/style/header.css" />
+	<link rel="stylesheet" type="text/css" href="/style/main.css" />
+	<link rel="stylesheet" type="text/css" href="/style/result.css" />
+	<c:if test="#{not applicationBean.resultAllowed}">
+		<meta http-equiv="REFRESH" content="6;url=index.html"></meta>
+	</c:if>
+	<script type="text/javascript"
+		src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<title>Enquete - Copa do mundo 2014 (Resultado)</title>
+</h:head>
+<h:body>
+	<f:phaseListener type="br.com.uol.bean.ShowResultPhaseListener"/>
+	<p:growl id="growl" showDetail="true" sticky="true" />
+	<c:if test="#{applicationBean.resultAllowed}">
+		<ui:include src="WEB-INF/header.xhtml" />
+		<h:form>
+			<article class="main">
+				<section class="result">
+					<h2 class="wizard">Confira o resultado parcial da votação:</h2>
+					<p:outputPanel id="option" styleClass="option">
+						<h:panelGrid columns="6" styleClass="options">
+							<h:outputText value="Amijubi" styleClass="label" />
+							<h:outputText value="#{applicationBean.amijubiVote}" styleClass="vote" />
+							<h:outputText value="Fuleco" styleClass="label" />
+							<h:outputText value="#{applicationBean.fulecoVote}" styleClass="vote" />
+							<h:outputText value="Zuzeco" styleClass="label" />
+							<h:outputText value="#{applicationBean.zuzecoVote}" styleClass="vote" />
+						</h:panelGrid>
+					</p:outputPanel>
+				</section>
+			</article>
+		</h:form>
+		<h:form>
+			<p:commandLink value="enquete" action="index?faces-redirect=true" styleClass="view-poll" ajax="false" />
+		</h:form>
+	</c:if>
+</h:body>
+</html>

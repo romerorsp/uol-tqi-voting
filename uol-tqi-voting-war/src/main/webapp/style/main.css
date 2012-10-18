@@ -8,6 +8,7 @@ body {
 	border: 1px solid black;
 	width: 430px;
 	float: left;
+	height: 240px;
 }
 
 .main .poll .wizard {
@@ -33,19 +34,62 @@ body {
 	top: -9px;
 }
 
-.main .security .captcha {
-	background: blue;
+.main .security .captcha { /* 	background: blue; */
 	width: 280px;
 	height: 100px;
 	position: relative;
 	left: 11px;
 	top: -10px;
 	border-radius: 15px;
+	margin-bottom: 20px;
 }
 
 .main .security .votingSubmit {
+	left: 14px;
+	width: 313px;
+}
+
+.main .poll .option .options {
 	position: relative;
-	left: 10px;
-	width: 281px;
-	top: -5px;
+	top: -25px;
+	font-family: arial;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.main .poll .option .options .line td {
+	padding-left: 5px;
+	text-align: left;
+	width: 200px !important;
+}
+
+.main .poll .option .options .line {
+	border-collapse: collapse;
+	vertical-align: middle;
+}
+
+.main .poll .option .options .line .description {
+	font-size: 12px;
+	color: gray;
+	margin-left: 98px;
+	text-align: left;
+}
+
+.main .poll .option .options .line .description div {
+	width: 248px;
+	padding-left: 45px;
+}
+
+.view-result {
+	position: relative;
+	top: 32px;
+	left: 247px;
+	font-family: arial;
+	font-weight: bold;
+	font-size: 12px;
+	color: #A00000;
+}
+
+.view-result a{
+	text-decoration: none;
 }

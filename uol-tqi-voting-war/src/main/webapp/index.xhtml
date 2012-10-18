@@ -3,77 +3,73 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
 	<meta charset="UTF-8"></meta>
 	<link rel="stylesheet" type="text/css" href="/style/header.css" />
 	<link rel="stylesheet" type="text/css" href="/style/main.css" />
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript"
+		src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<title>Enquete - Copa do mundo 2014 (Votação)</title>
 </h:head>
 <h:body>
-	<div></div>
-	<ui:include src="WEB-INF/header.xhtml"/>
+	<ui:include src="WEB-INF/header.xhtml" />
 	<h:form>
 		<article class="main">
 			<section class="poll">
 				<h2 class="wizard">1. Escolha o melhor nome para o mascote:</h2>
-				<p:selectOneRadio id="options" value="#{pollBean.option}">
-					<li class="option">
-						<div class="radio">  
-            				<f:selectItem itemLabel="Amijubi" itemValue="0" />   
-						</div>
-						<div class="description">
-							União das palavras amizade e jubilo, que está ligado ao tupi
-							guarani, em que jubi significa amarelo, cor predominante no mascote.  
-						</div>
-					</li>
-					<li class="option">
-						<div class="radio">  
-            				<f:selectItem itemLabel="Fuleco" itemValue="1" />   
-						</div>
-						<div class="description">
-							Uma mistura de futebol e ecologia. O nome busca incentivar o cuidado
-							das pessoas com o meio ambiente.  
-						</div>
-					</li>
-					<li class="option">
-						<div class="radio">  
-            				<f:selectItem itemLabel="Zuzeco" itemValue="2" />   
-						</div>
-						<div class="description">
-							Mistura da cor azul com ecologia -, que busca também incentivar
-							cuidados relacionados à ecologia.  
-						</div>
-					</li>
-				</p:selectOneRadio>
+				<p:outputPanel id="option" styleClass="option">
+					<p:selectOneRadio id="options" value="#{pollBean.option}" layout="custom">
+						<f:selectItem itemLabel="Amijubi" itemValue="0" />
+						<f:selectItem itemLabel="Fuleco" itemValue="1" />
+						<f:selectItem itemLabel="Zuzeco" itemValue="2" />
+					</p:selectOneRadio>
+
+					<h:panelGrid columns="1" styleClass="options">
+						<h:panelGrid styleClass="line" columns="3">
+							<p:radioButton id="opt1" for="options" itemIndex="0" styleClass="radio"/>
+							<h:outputLabel for="opt1" value="Amijubi" styleClass="radioLabel"/>
+							<h:panelGroup styleClass="description">
+								<div>União das palavras amizade e jubilo, que está ligado ao tupi guarani, 
+								em que jubi significa amarelo, cor predominante no mascote.</div>
+							</h:panelGroup>
+						</h:panelGrid>
+						<h:panelGrid styleClass="line" columns="3">
+							<p:radioButton id="opt2" for="options" itemIndex="1" styleClass="radio"/>
+							<h:outputLabel for="opt2" value="Fuleco" styleClass="radioLabel"/>
+							<h:panelGroup styleClass="description">
+								<div>Uma mistura de futebol e ecologia. O nome busca incentivar o cuidado das pessoas com o meio ambiente.</div>
+							</h:panelGroup>
+						</h:panelGrid>
+						<h:panelGrid styleClass="line" columns="3">
+							<p:radioButton id="opt3" for="options" itemIndex="2" styleClass="radio"/>
+							<h:outputLabel for="opt3" value="Zuzeco" styleClass="radioLabel"/>
+							<h:panelGroup styleClass="description">
+								<div>Mistura da cor azul com ecologia -, que busca também incentivar cuidados relacionados à ecologia.</div>  
+							</h:panelGroup>
+						</h:panelGrid>
+					</h:panelGrid>
+					<h:messages>
+						<h:message for="option" styleClass="error"/>
+					</h:messages>
+				</p:outputPanel>
 			</section>
 			<section class="security">
 				<h2 class="wizard">2. Digite o código de verificação abaixo:</h2>
-				<div class="captcha"></div>
-				<h:commandButton action="#{userBean.doLogin}" type="submit" value="Votar" styleClass="votingSubmit"/>
+				<div class="captcha">
+					<p:captcha id="captcha" language="pt" required="true" requiredMessage="Campo Obrigatório"></p:captcha>
+				</div>
+				 <p:growl id="growl" showDetail="true" sticky="true" />
+				 <f:viewParam name="faces-redirect" value="true" />
+				<p:commandButton action="#{pollBean.registerVoting}" type="submit" value="Votar" styleClass="votingSubmit" update="growl"/>
 			</section>
 		</article>
 	</h:form>
-	
-<!-- 	<center> -->
-<!-- 		<p:panel header="Authentication"> -->
-<!-- 			<h:form> -->
-<!-- 				<h:panelGrid cellpadding="2" columns="2"> -->
-<!-- 					<h:outputLabel for="#{userBean.name}" value="User name"> -->
-<!-- 						<h:inputText label="User name" value="#{userBean.name}" /> -->
-<!-- 					</h:outputLabel> -->
-<!-- 					<h:outputLabel for="#{userBean.password}" value="Password"> -->
-<!-- 						<h:inputSecret label="Password" value="#{userBean.password}" /> -->
-<!-- 					</h:outputLabel> -->
-<!-- 					<h:commandButton action="#{userBean.doLogin}" type="submit" -->
-<!-- 						value="Login" /> -->
-<!-- 				</h:panelGrid> -->
-<!-- 			</h:form> -->
-<!-- 			<div> -->
-<!-- 				<h:messages /> -->
-<!-- 			</div> -->
-<!-- 		</p:panel> -->
-<!-- 	</center> -->
+	<c:if test="#{applicationBean.resultAllowed}">
+		<h:form>
+			<p:commandLink value="resultado parcial" action="result?faces-redirect=true" styleClass="view-result" ajax="false"/>
+		</h:form>
+	</c:if>
 </h:body>
 </html>

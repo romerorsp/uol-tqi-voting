@@ -5,7 +5,7 @@
 	id="WebApp_ID" version="3.0">
 	<display-name>Voting Web Module</display-name>
 	<welcome-file-list>
-		<welcome-file>index.jsf</welcome-file>
+		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
 
 	<servlet>
@@ -13,12 +13,29 @@
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.jsf</url-pattern>
+		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
+
 	<listener>
-        <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
-    </listener>
+		<listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+	</listener>
+
+	<context-param>
+		<param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+		<param-value>6Lc86NcSAAAAAFRxiXJgLjk-EHaxC5meTbGs-MKw</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+		<param-value>6Lc86NcSAAAAAPJEWRzAOTTkHfidEVC1vvduQ8k7</param-value>
+	</context-param>
+	
+	<!-- It was defined the private static final String DATE_STR_FORMAT = "dd-MM-yyyy-hh:mm"; constant to the format you should introduce here -->
+	<context-param>
+		<param-name>showResultDate</param-name>
+		<param-value>17-10-2012-15:22</param-value>
+	</context-param>
 </web-app>
