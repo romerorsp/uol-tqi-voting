@@ -1,0 +1,51 @@
+@CHARSET "UTF-8";
+
+body {
+	margin-left: 20px;
+}
+
+.main .poll {
+	border: 1px solid black;
+	width: 430px;
+	float: left;
+}
+
+.main .poll .wizard {
+	font-size: 15px;
+	background: white;
+	position: relative;
+	top: -22px;
+	left: 10px;
+	width: 300px;
+	font-family: arial;
+}
+
+.main .security {
+	margin-left: 450px;
+	width: 340px;
+}
+
+.main .security .wizard {
+	font-size: 14px;
+	font-family: arial;
+	position: relative;
+	left: 12px;
+	top: -9px;
+}
+
+.main .security .captcha {
+	background: blue;
+	width: 280px;
+	height: 100px;
+	position: relative;
+	left: 11px;
+	top: -10px;
+	border-radius: 15px;
+}
+
+.main .security .votingSubmit {
+	position: relative;
+	left: 10px;
+	width: 281px;
+	top: -5px;
+}

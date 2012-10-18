@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta charset="UTF-8"></meta>
+	<link rel="stylesheet" type="text/css" href="/style/header.css" />
+	<link rel="stylesheet" type="text/css" href="/style/main.css" />
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<title>Enquete - Copa do mundo 2014 (Votação)</title>
+</h:head>
+<h:body>
+	<div></div>
+	<ui:include src="WEB-INF/header.xhtml"/>
+	<h:form>
+		<article class="main">
+			<section class="poll">
+				<h2 class="wizard">1. Escolha o melhor nome para o mascote:</h2>
+				<p:selectOneRadio id="options" value="#{pollBean.option}">
+					<li class="option">
+						<div class="radio">  
+            				<f:selectItem itemLabel="Amijubi" itemValue="0" />   
+						</div>
+						<div class="description">
+							União das palavras amizade e jubilo, que está ligado ao tupi
+							guarani, em que jubi significa amarelo, cor predominante no mascote.  
+						</div>
+					</li>
+					<li class="option">
+						<div class="radio">  
+            				<f:selectItem itemLabel="Fuleco" itemValue="1" />   
+						</div>
+						<div class="description">
+							Uma mistura de futebol e ecologia. O nome busca incentivar o cuidado
+							das pessoas com o meio ambiente.  
+						</div>
+					</li>
+					<li class="option">
+						<div class="radio">  
+            				<f:selectItem itemLabel="Zuzeco" itemValue="2" />   
+						</div>
+						<div class="description">
+							Mistura da cor azul com ecologia -, que busca também incentivar
+							cuidados relacionados à ecologia.  
+						</div>
+					</li>
+				</p:selectOneRadio>
+			</section>
+			<section class="security">
+				<h2 class="wizard">2. Digite o código de verificação abaixo:</h2>
+				<div class="captcha"></div>
+				<h:commandButton action="#{userBean.doLogin}" type="submit" value="Votar" styleClass="votingSubmit"/>
+			</section>
+		</article>
+	</h:form>
+	
+<!-- 	<center> -->
+<!-- 		<p:panel header="Authentication"> -->
+<!-- 			<h:form> -->
+<!-- 				<h:panelGrid cellpadding="2" columns="2"> -->
+<!-- 					<h:outputLabel for="#{userBean.name}" value="User name"> -->
+<!-- 						<h:inputText label="User name" value="#{userBean.name}" /> -->
+<!-- 					</h:outputLabel> -->
+<!-- 					<h:outputLabel for="#{userBean.password}" value="Password"> -->
+<!-- 						<h:inputSecret label="Password" value="#{userBean.password}" /> -->
+<!-- 					</h:outputLabel> -->
+<!-- 					<h:commandButton action="#{userBean.doLogin}" type="submit" -->
+<!-- 						value="Login" /> -->
+<!-- 				</h:panelGrid> -->
+<!-- 			</h:form> -->
+<!-- 			<div> -->
+<!-- 				<h:messages /> -->
+<!-- 			</div> -->
+<!-- 		</p:panel> -->
+<!-- 	</center> -->
+</h:body>
+</html>
