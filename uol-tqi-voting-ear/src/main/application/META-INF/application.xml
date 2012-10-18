@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE application PUBLIC
+	"-//Sun Microsystems, Inc.//DTD J2EE Application 1.3//EN"
+	"http://java.sun.com/dtd/application_1_3.dtd">
+<application>
+  <display-name>uol-tqi-voting-ear</display-name>
+  <description>The project that would be suposed to push me to UOL team.</description>
+  <module>
+    <ejb>uol-tqi-voting-ejb-1.0.jar</ejb>
+  </module>
+</application>

@@ -8,6 +8,17 @@
 	<name>UOL/TQI Voting Project</name>
 	<description>The project that would be suposed to push me to UOL team.</description>
 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<modules>
+		<module>uol-tqi-voting-war</module>
+		<module>uol-tqi-voting-ear</module>
+		<module>uol-tqi-voting-ejb</module>
+		<module>uol-tqi-voting-ejb-client</module>
+	</modules>
+
 	<dependencies>
 		<dependency>
 			<groupId>javax.persistence</groupId>
