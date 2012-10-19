@@ -3,14 +3,21 @@ package br.com.uol.bean;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.model.SelectItem;
 
 import org.jboss.logmanager.Level;
+
+import br.com.uol.business.PollBO;
+import br.com.uol.business.ServiceLocator;
+import br.com.uol.business.poll.Option;
+import br.com.uol.business.poll.Poll;
 
 @ManagedBean(name="applicationBean")
 @ApplicationScoped
@@ -21,9 +28,6 @@ public class ApplicationBean {
 	
 	@ManagedProperty(value="#{initParam.showResultDate}")
 	private String dateStr;
-	private double amijubiVote = 20;
-	private double fulecoVote = 25;
-	private double zuzecoVote = 55;
 	private Date date;
 	
 	@PostConstruct
@@ -37,30 +41,11 @@ public class ApplicationBean {
 		}
 	}
 	
-	public double getFulecoVote() {
-		return fulecoVote;
+	private String getPollShortName() {
+		// TODO Auto-generated method stub
+		return "MASCOTE";
 	}
 
-	public void setFulecoVote(double fulecoVote) {
-		this.fulecoVote = fulecoVote;
-	}
-
-	public double getAmijubiVote() {
-		return amijubiVote;
-	}
-
-	public void setAmijubiVote(double amijubiVote) {
-		this.amijubiVote = amijubiVote;
-	}
-
-	public double getZuzecoVote() {
-		return zuzecoVote;
-	}
-
-	public void setZuzecoVote(double zuzecoVote) {
-		this.zuzecoVote = zuzecoVote;
-	}
-	
 	public boolean isResultAllowed(){
 		return date != null && new Date().after(date);
 	}
@@ -71,5 +56,9 @@ public class ApplicationBean {
 
 	public void setDateStr(String dateStr) {
 		this.dateStr = dateStr;
+	}
+
+	public Poll getPoll() {
+		return ServiceLocator.locate(PollBO.JNDI_PATH, PollBO.class).getPollByShortName(getPollShortName());
 	}
 }

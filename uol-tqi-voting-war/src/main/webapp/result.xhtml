@@ -27,14 +27,22 @@
 				<section class="result">
 					<h2 class="wizard">Confira o resultado parcial da votação:</h2>
 					<p:outputPanel id="option" styleClass="option">
-						<h:panelGrid columns="6" styleClass="options">
-							<h:outputText value="Amijubi" styleClass="label" />
-							<h:outputText value="#{applicationBean.amijubiVote}" styleClass="vote" />
-							<h:outputText value="Fuleco" styleClass="label" />
-							<h:outputText value="#{applicationBean.fulecoVote}" styleClass="vote" />
-							<h:outputText value="Zuzeco" styleClass="label" />
-							<h:outputText value="#{applicationBean.zuzecoVote}" styleClass="vote" />
-						</h:panelGrid>
+						<p:dataGrid value="#{pollBean.options}" var="opt" styleClass="options">
+							<p:column>
+								<h:outputText value="#{opt.name}" styleClass="label" />
+								<h:outputText value="#{(opt.totalVotes*100)/opt.poll.totalVotes}" styleClass="vote">
+									<f:convertNumber maxFractionDigits="2" minFractionDigits="2" minIntegerDigits="2" />
+								</h:outputText>
+							</p:column>
+						</p:dataGrid>
+<!-- 						<h:panelGrid columns="6" styleClass="options"> -->
+<!-- 							<h:outputText value="Amijubi" styleClass="label" /> -->
+<!-- 							<h:outputText value="# {applicationBean.amijubiVote}" styleClass="vote" /> -->
+<!-- 							<h:outputText value="Fuleco" styleClass="label" /> -->
+<!-- 							<h:outputText value="# {applicationBean.fulecoVote}" styleClass="vote" /> -->
+<!-- 							<h:outputText value="Zuzeco" styleClass="label" /> -->
+<!-- 							<h:outputText value="# {applicationBean.zuzecoVote}" styleClass="vote" /> -->
+<!-- 						</h:panelGrid> -->
 					</p:outputPanel>
 				</section>
 			</article>

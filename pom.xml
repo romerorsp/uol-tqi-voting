@@ -13,10 +13,10 @@
 	</properties>
 
 	<modules>
+		<module>uol-tqi-voting-ejb-client</module>
 		<module>uol-tqi-voting-war</module>
 		<module>uol-tqi-voting-ear</module>
 		<module>uol-tqi-voting-ejb</module>
-		<module>uol-tqi-voting-ejb-client</module>
 	</modules>
 
 	<dependencies>
