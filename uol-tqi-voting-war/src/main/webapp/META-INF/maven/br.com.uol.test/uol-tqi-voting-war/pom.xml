@@ -59,9 +59,19 @@
 <!-- 			<version>4.2.2.GA</version> -->
 <!-- 		</dependency> -->
 		<dependency>
-			<groupId>br.com.pontoclass</groupId>
-			<artifactId>myDaily-ejb-jar-client</artifactId>
+			<groupId>br.com.uol.test</groupId>
+			<artifactId>uol-tqi-voting-ejb-client</artifactId>
 			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp.jstl</groupId>
+			<artifactId>jstl-api</artifactId>
+			<version>1.2</version>
 		</dependency>
 	</dependencies>
 

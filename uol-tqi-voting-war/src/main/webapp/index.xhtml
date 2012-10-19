@@ -18,38 +18,54 @@
 	<h:form>
 		<article class="main">
 			<section class="poll">
-				<h2 class="wizard">1. Escolha o melhor nome para o mascote:</h2>
+<!-- 				<h2 class="wizard">1. Escolha o melhor nome para o mascote:</h2> -->
+				<h2 class="wizard">
+					<h:outputText value=" 1.#{pollBean.poll.question}"/>
+				</h2>
 				<p:outputPanel id="option" styleClass="option">
 					<p:selectOneRadio id="options" value="#{pollBean.option}" layout="custom">
-						<f:selectItem itemLabel="Amijubi" itemValue="0" />
-						<f:selectItem itemLabel="Fuleco" itemValue="1" />
-						<f:selectItem itemLabel="Zuzeco" itemValue="2" />
+						<f:selectItems value="#{pollBean.selectItems}"></f:selectItems>
 					</p:selectOneRadio>
-
+					
 					<h:panelGrid columns="1" styleClass="options">
-						<h:panelGrid styleClass="line" columns="3">
-							<p:radioButton id="opt1" for="options" itemIndex="0" styleClass="radio"/>
-							<h:outputLabel for="opt1" value="Amijubi" styleClass="radioLabel"/>
-							<h:panelGroup styleClass="description">
-								<div>União das palavras amizade e jubilo, que está ligado ao tupi guarani, 
-								em que jubi significa amarelo, cor predominante no mascote.</div>
-							</h:panelGroup>
-						</h:panelGrid>
-						<h:panelGrid styleClass="line" columns="3">
-							<p:radioButton id="opt2" for="options" itemIndex="1" styleClass="radio"/>
-							<h:outputLabel for="opt2" value="Fuleco" styleClass="radioLabel"/>
-							<h:panelGroup styleClass="description">
-								<div>Uma mistura de futebol e ecologia. O nome busca incentivar o cuidado das pessoas com o meio ambiente.</div>
-							</h:panelGroup>
-						</h:panelGrid>
-						<h:panelGrid styleClass="line" columns="3">
-							<p:radioButton id="opt3" for="options" itemIndex="2" styleClass="radio"/>
-							<h:outputLabel for="opt3" value="Zuzeco" styleClass="radioLabel"/>
-							<h:panelGroup styleClass="description">
-								<div>Mistura da cor azul com ecologia -, que busca também incentivar cuidados relacionados à ecologia.</div>  
-							</h:panelGroup>
-						</h:panelGrid>
+						<c:forEach items="#{pollBean.options}" var="opt" varStatus="status">
+							<h:panelGrid styleClass="line" columns="3">
+								<p:radioButton id="opt#{status.count}" for="options" itemIndex="#{status.count-1}" styleClass="radio"/>
+								<h:outputLabel for="opt#{status.count}" value="#{opt.name}" styleClass="radioLabel"/>
+								<h:panelGroup styleClass="description">
+									<h:panelGroup layout="custom">
+										<h:outputText value="#{opt.description}"></h:outputText>
+									</h:panelGroup>
+								</h:panelGroup>
+							</h:panelGrid>
+						</c:forEach>
 					</h:panelGrid>
+					
+<!-- 					<h:panelGrid columns="1" styleClass="options"> -->
+<!-- 						<c:forEach items="# {pollBean.options}"></c:forEach> -->
+<!-- 						<h:panelGrid styleClass="line" columns="3"> -->
+<!-- 							<p:radioButton id="opt1" for="options" itemIndex="0" styleClass="radio"/> -->
+<!-- 							<h:outputLabel for="opt1" value="Amijubi" styleClass="radioLabel"/> -->
+<!-- 							<h:panelGroup styleClass="description"> -->
+<!-- 								<div>União das palavras amizade e jubilo, que está ligado ao tupi guarani,  -->
+<!-- 								em que jubi significa amarelo, cor predominante no mascote.</div> -->
+<!-- 							</h:panelGroup> -->
+<!-- 						</h:panelGrid> -->
+<!-- 						<h:panelGrid styleClass="line" columns="3"> -->
+<!-- 							<p:radioButton id="opt2" for="options" itemIndex="1" styleClass="radio"/> -->
+<!-- 							<h:outputLabel for="opt2" value="Fuleco" styleClass="radioLabel"/> -->
+<!-- 							<h:panelGroup styleClass="description"> -->
+<!-- 								<div>Uma mistura de futebol e ecologia. O nome busca incentivar o cuidado das pessoas com o meio ambiente.</div> -->
+<!-- 							</h:panelGroup> -->
+<!-- 						</h:panelGrid> -->
+<!-- 						<h:panelGrid styleClass="line" columns="3"> -->
+<!-- 							<p:radioButton id="opt3" for="options" itemIndex="2" styleClass="radio"/> -->
+<!-- 							<h:outputLabel for="opt3" value="Zuzeco" styleClass="radioLabel"/> -->
+<!-- 							<h:panelGroup styleClass="description"> -->
+<!-- 								<div>Mistura da cor azul com ecologia -, que busca também incentivar cuidados relacionados à ecologia.</div>   -->
+<!-- 							</h:panelGroup> -->
+<!-- 						</h:panelGrid> -->
+<!-- 					</h:panelGrid> -->
 					<h:messages>
 						<h:message for="option" styleClass="error"/>
 					</h:messages>
