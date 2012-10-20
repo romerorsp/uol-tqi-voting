@@ -13,6 +13,7 @@
 	</properties>
 
 	<modules>
+		<module>src/data</module>
 		<module>uol-tqi-voting-ejb-client</module>
 		<module>uol-tqi-voting-war</module>
 		<module>uol-tqi-voting-ear</module>

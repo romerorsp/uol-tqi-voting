@@ -5,9 +5,9 @@ import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import br.com.uol.business.poll.Poll;
-import br.com.uol.business.poll.PollImpl;
 import br.com.uol.business.poll.Vote;
 import br.com.uol.util.PersistenceUtil;
 
@@ -19,29 +19,40 @@ import br.com.uol.util.PersistenceUtil;
 @TransactionManagement(TransactionManagementType.BEAN)
 public class PollBOImpl implements PollBO {
 
-    /**
-     * Default constructor. 
-     */
-    public PollBOImpl() {
-//        EntityManager m = PersistenceUtil.getEntityManager();
-    }
-
 	@Override
 	public void registerVote(Vote vote) {
-		// TODO Auto-generated method stub
 		
+		EntityManager m = PersistenceUtil.getEntityManager();
+		m .getTransaction().begin();
+		Query query = m.createQuery("update Option q set q.totalVotes = q.totalVotes+1 where q.id = :id");
+		query.setParameter("id", vote.getOption().getId());
+		if(!(query.executeUpdate() == 1)){
+			m.getTransaction().rollback();
+			throw new RuntimeException("Não foi possível atualizar as informações sobre o voto.");
+		}
+		m.getTransaction().commit();
+		m.clear();
 	}
 
 	@Override
 	public Poll getPollByShortName(final String sn) {
-		// TODO Auto-generated method stub
-		return new PollImpl();
+		EntityManager m = PersistenceUtil.getEntityManager();
+		Query query = m.createQuery("from Poll p where p.shortName = ?");
+		query.setParameter(1, sn);
+		Object o;
+		if((o=query.getSingleResult()) != null){
+			m.clear();
+			return Poll.class.cast(o);
+		}
+		return null;
 	}
 
 	@Override
 	public void savePoll(Poll poll) {
-		// TODO Auto-generated method stub
-		
+		EntityManager m = PersistenceUtil.getEntityManager();
+		m .getTransaction().begin();
+		m.persist(poll);
+		m.getTransaction().commit();
+		m.clear();
 	}
-
 }

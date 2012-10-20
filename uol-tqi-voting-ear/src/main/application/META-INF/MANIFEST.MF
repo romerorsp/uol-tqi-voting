@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Build-Jdk: 1.6.0_35
+Class-Path: src/main/application/mysql-connector-java-5.1.22-bin.jar mysql-connector-java-5.1.22-bin.jar
+

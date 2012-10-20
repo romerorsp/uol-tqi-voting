@@ -1,14 +1,41 @@
 package br.com.uol.business.poll;
 
+import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+@Entity(name="Option")
+@Table(name="tblQuestions")
+@Cacheable(false)
 public class OptionImpl implements Option {
 
 	private static final long serialVersionUID = -7483300644860624056L;
-	private final PollImpl poll;
+	
+	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="id_poll", nullable=false)
+	private PollImpl poll;
+	
+	@Id
+	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
 
-	public OptionImpl(PollImpl poll) {
-		// TODO Auto-generated constructor stub
-		this.poll = poll;
-	}
+	@Column(name="votes")
+	private int totalVotes;
+
+	@Column(name="name", nullable=false, unique=true)
+	private String name;
+
+	@Column(name="description", nullable=true, unique=false)
+	private String description;
 
 	@Override
 	public Poll getPoll() {
@@ -17,26 +44,21 @@ public class OptionImpl implements Option {
 
 	@Override
 	public int getTotalVotes() {
-		// TODO Auto-generated method stub
-		return 33;
+		return totalVotes;
 	}
 
 	@Override
 	public int getId() {
-		// TODO Auto-generated method stub
-		return this.hashCode();
+		return this.id;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return toString();
+		return this.name;
 	}
 
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return "Mistura da cor azul com ecologia -, que busca também incentivar cuidados relacionados à ecologia.";
+		return this.description;
 	}
-
 }

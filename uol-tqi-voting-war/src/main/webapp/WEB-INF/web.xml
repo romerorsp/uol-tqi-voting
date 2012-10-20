@@ -38,4 +38,9 @@
 		<param-name>showResultDate</param-name>
 		<param-value>17-10-2012-15:22</param-value>
 	</context-param>
+	
+	<context-param>
+		<param-name>pollShortName</param-name>
+		<param-value>MASCOTE</param-value>
+	</context-param>
 </web-app>
