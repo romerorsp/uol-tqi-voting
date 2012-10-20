@@ -3,20 +3,17 @@ package br.com.uol.bean;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.model.SelectItem;
 
 import org.jboss.logmanager.Level;
 
 import br.com.uol.business.PollBO;
 import br.com.uol.business.ServiceLocator;
-import br.com.uol.business.poll.Option;
 import br.com.uol.business.poll.Poll;
 
 @ManagedBean(name="applicationBean")
@@ -28,6 +25,8 @@ public class ApplicationBean {
 	
 	@ManagedProperty(value="#{initParam.showResultDate}")
 	private String dateStr;
+	@ManagedProperty(value="#{initParam.pollShortName}")
+	private String pollShortName;
 	private Date date;
 	
 	@PostConstruct
@@ -39,11 +38,6 @@ public class ApplicationBean {
 				LOGGER.log(Level.INFO, String.format("It seems no date was setted up for starting to show the poll results, due: %s", e.getLocalizedMessage()));
 			}
 		}
-	}
-	
-	private String getPollShortName() {
-		// TODO Auto-generated method stub
-		return "MASCOTE";
 	}
 
 	public boolean isResultAllowed(){
@@ -60,5 +54,13 @@ public class ApplicationBean {
 
 	public Poll getPoll() {
 		return ServiceLocator.locate(PollBO.JNDI_PATH, PollBO.class).getPollByShortName(getPollShortName());
+	}
+
+	public String getPollShortName() {
+		return pollShortName;
+	}
+
+	public void setPollShortName(String pollShortName) {
+		this.pollShortName = pollShortName;
 	}
 }

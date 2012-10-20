@@ -55,6 +55,7 @@ body {
 	font-family: arial;
 	padding-left: 15px;
 	padding-right: 15px;
+	border-spacing: 15px;
 }
 
 .main .poll .option .options .line td {
@@ -71,8 +72,8 @@ body {
 .main .poll .option .options .line .description {
 	font-size: 12px;
 	color: gray;
-	margin-left: 98px;
 	text-align: left;
+	width: 245px;
 }
 
 .main .poll .option .options .line .description div {
