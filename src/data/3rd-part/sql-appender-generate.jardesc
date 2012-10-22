@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jardesc>
+    <jar path="data/3rd-part/sql-append.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/uol-tqi-voting/src/data/3rd-part/sql-appender-generate.jardesc" exportErrors="false" exportWarnings="false" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" mainClassHandleIdentifier="=uol-tqi-voting-ejb/src\/main\/java&lt;br.com.uol.util{SQLAppender.java[SQLAppender" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=uol-tqi-voting-ejb/src\/main\/java&lt;br.com.uol.util{SQLAppender.java"/>
+    </selectedElements>
+</jardesc>

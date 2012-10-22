@@ -104,4 +104,40 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>war-structure</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>prd</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<phase>install</phase>
+								<id>copy-web-project</id>
+								<configuration>
+									<tasks>
+										<echo>Coping ROOT web WAR into web container's deployment
+											directory</echo>
+										<copy file="${basedir}/target/ROOT.war"
+											toDir="${web.deployment.dir}"></copy>
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

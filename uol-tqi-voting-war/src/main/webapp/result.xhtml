@@ -29,18 +29,12 @@
 						<p:dataGrid value="#{pollBean.options}" var="opt" styleClass="options">
 							<p:column>
 								<h:outputText value="#{opt.name}" styleClass="label" />
-								<c:choose>
-									<c:when test="#{opt.poll.totalVotes ne 0}">
-										<h:outputText value="#{opt.totalVotes * 100 / opt.poll.totalVotes}" styleClass="vote">
-											<f:convertNumber maxFractionDigits="2" minFractionDigits="2" minIntegerDigits="2" />
-										</h:outputText>
-									</c:when>
-									<c:otherwise>
-										<h:outputText value="0" styleClass="vote">
-											<f:convertNumber maxFractionDigits="2" minFractionDigits="2" minIntegerDigits="2" />
-										</h:outputText>
-									</c:otherwise>
-								</c:choose>
+								<h:outputText  rendered="#{opt.poll.totalVotes ne 0}" value="#{opt.totalVotes * 100 / opt.poll.totalVotes}" styleClass="vote">
+									<f:convertNumber maxFractionDigits="2" minFractionDigits="2" minIntegerDigits="2" />
+								</h:outputText>
+								<h:outputText value="0" styleClass="vote" rendered="#{opt.poll.totalVotes == 0}">
+									<f:convertNumber maxFractionDigits="2" minFractionDigits="2" minIntegerDigits="2" />
+								</h:outputText>
 							</p:column>
 						</p:dataGrid>
 					</p:outputPanel>

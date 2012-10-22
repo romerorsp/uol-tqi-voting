@@ -12,4 +12,51 @@
 	<artifactId>data</artifactId>
 	<packaging>pom</packaging>
 	<name>UOL/TQI Voting SQL structuring</name>
+	
+	<profiles>
+		<profile>
+			<id>sql-structure</id>
+			<activation>
+				<property>
+					<name>sql</name>
+					<value>create</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2.1</version>
+						<executions>
+							<execution>
+								<phase>pre-integration-test</phase>
+								<id>create-update-database-structure</id>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+								<configuration>
+									<executable>${java.home}/bin/java</executable>
+									<workingDirectory>${project.basedir}/src/data/sql</workingDirectory>
+									<arguments>
+										<argument>-DdebugMode=true</argument>
+										<argument>-classpath</argument>
+										<argument>${basedir}/3rd-part/sql-append.jar${path.separator}${basedir}/../../uol-tqi-voting-ear/src/main/resources/mysql-connector-java-5.1.22-bin.jar</argument>
+										<argument>br.com.uol.util.SQLAppender</argument>
+										<argument>${jdbc.connection.driver}</argument>
+										<argument>${jdbc.connection.url}</argument>
+										<argument>${jdbc.connection.user}</argument>
+										<argument>${jdbc.connection.password}</argument>
+										<argument>${basedir}/sql/tables/tblPoll.sql</argument>
+										<argument>${basedir}/sql/tables/tblQuestions.sql</argument>
+										<argument>${basedir}/sql/feed/script.sql</argument>
+									</arguments>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
