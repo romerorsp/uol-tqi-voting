@@ -22,33 +22,36 @@
 	</dependencies>
 
 	<build>
+		<finalName>voting-ear</finalName>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>run</goal>
-						</goals>
-						<phase>prepare-package</phase>
-						<id>copy-mySQL-driver-ear-lib-file</id>
-						<configuration>
-							<tasks>
-								<echo>Coping mysql Driver into the EAR lib directory</echo>
-								<copy file="src/main/application/META-INF/lib/mysql-connector-java-5.1.22-bin.jar" toDir="target/${project.build.finalName}/lib/"></copy>
-							</tasks>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.apache.maven.plugins</groupId> -->
+<!-- 				<artifactId>maven-antrun-plugin</artifactId> -->
+<!-- 				<executions> -->
+<!-- 					<execution> -->
+<!-- 						<goals> -->
+<!-- 							<goal>run</goal> -->
+<!-- 						</goals> -->
+<!-- 						<phase>ear</phase> -->
+<!-- 						<id>copy-mySQL-driver-ear-lib-file</id> -->
+<!-- 						<configuration> -->
+<!-- 							<tasks> -->
+<!-- 								<echo>Coping mysql Driver into the EAR lib directory</echo> -->
+<!-- 								<copy -->
+<!-- 									file="src/main/application/META-INF/lib/mysql-connector-java-5.1.22-bin.jar" -->
+<!-- 									toDir="target/${project.build.finalName}/lib/"></copy> -->
+<!-- 							</tasks> -->
+<!-- 						</configuration> -->
+<!-- 					</execution> -->
+<!-- 				</executions> -->
+<!-- 			</plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-ear-plugin</artifactId>
 				<version>2.3.2</version>
 				<!-- configuring the ear plugin -->
 				<configuration>
-				<resourcesDir>lib</resourcesDir>
+					<resourcesDir>lib</resourcesDir>
 					<earSourceIncludes>lib/*</earSourceIncludes>
 					<defaultLibBundleDir>lib</defaultLibBundleDir>
 					<modules>
@@ -61,4 +64,40 @@
 			</plugin>
 		</plugins>
 	</build>
+	<profiles>
+		<profile>
+			<id>ear-structure</id>
+			<activation>
+				<property>
+					<name>env</name>
+					<value>prd</value>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-antrun-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>run</goal>
+								</goals>
+								<phase>install</phase>
+								<id>copy-enterprise-project</id>
+								<configuration>
+									<tasks>
+										<echo>Coping voting-ear enterprise EAR into application
+											container's deployment directory</echo>
+										<copy file="${basedir}/target/voting-ear.ear"
+											toDir="${ear.deployment.dir}"></copy>
+									</tasks>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

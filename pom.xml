@@ -10,14 +10,20 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<jdbc.connection.driver>com.mysql.jdbc.Driver</jdbc.connection.driver>
+		<jdbc.connection.url>jdbc:mysql://192.168.35.129:3306/test</jdbc.connection.url>
+		<jdbc.connection.user>root</jdbc.connection.user>
+		<jdbc.connection.password>polopoly</jdbc.connection.password>
+		<ear.deployment.dir>/usr/local/jboss-as-7.1.1.Final/standalone/deployments</ear.deployment.dir>
+		<web.deployment.dir>/usr/local/apache-tomcat-7.0.25/webapps</web.deployment.dir>
 	</properties>
 
 	<modules>
 		<module>src/data</module>
 		<module>uol-tqi-voting-ejb-client</module>
-		<module>uol-tqi-voting-war</module>
-		<module>uol-tqi-voting-ear</module>
 		<module>uol-tqi-voting-ejb</module>
+		<module>uol-tqi-voting-ear</module>
+		<module>uol-tqi-voting-war</module>
 	</modules>
 
 	<dependencies>
